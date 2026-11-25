@@ -15,8 +15,8 @@ Uma cidade entrega sua administração a VÉRTICE, um sistema de coordenação c
 ## Mecânicas
 
 - Oito capítulos originais, 24 opções de decisão, seis desfechos alcançáveis.
-- Quatro indicadores abstratos de 0 a 100; relações com três personagens; histórico de decisões.
-- Opções condicionais, salvamento local, exportação/importação JSON, tema claro/escuro e layout responsivo.
+- Quatro indicadores abstratos de 0 a 100; relações com três personagens; histórico de decisões e reações do conselho conforme as relações.
+- Opções condicionais, salvamento local, exportação/importação JSON, tema claro/escuro, reversão da última decisão e layout responsivo.
 - O motor é determinístico. O arquivo de progresso contém apenas as escolhas e a versão; o estado é reconstruído a partir da campanha.
 
 ## Estrutura
@@ -45,10 +45,14 @@ A suíte percorre todas as rotas legais e verifica os limites dos indicadores, a
 
 ## Publicação
 
-Crie um repositório separado e envie os arquivos. Em Settings → Pages → Build and deployment, selecione Deploy from a branch, `main`, `/ (root)`. O arquivo `index.html` será a entrada. O workflow executa os testes em pushes e pull requests. A versão autônoma é regenerada por `npm run build`.
+O repositório oficial é [ykauttiz/protocolo-nulo](https://github.com/ykauttiz/protocolo-nulo). Para ativar a hospedagem, em Settings → Pages → Build and deployment, selecione Deploy from a branch, `main`, `/ (root)`. O arquivo `index.html` será a entrada. O workflow executa os testes em pushes e pull requests. A versão autônoma é regenerada por `npm run build`.
 
 ## Referências e originalidade
 
 Inspirado em temas de autonomia humana e poder tecnológico discutidos em *I Have No Mouth, and I Must Scream*, de Harlan Ellison (1967), e em abordagens de ficção interativa de jogos como *Orwell* e *Papers, Please*. O universo, personagens, texto e código são originais; não se trata de adaptação oficial. Consulte [a pesquisa e o design](docs/DESIGN.md).
 
 A campanha é fictícia, não representa uma IA real e não implementa mecanismos de vigilância de pessoas. Os indicadores são recursos dramáticos, não instrumentos científicos de avaliação social.
+
+## Versão 1.1
+
+Melhorias de acessibilidade, recuperação de progresso, reversão de decisões, reações narrativas e validação da campanha. O formato de progresso v1 permanece compatível. Consulte [CHANGELOG.md](CHANGELOG.md).
