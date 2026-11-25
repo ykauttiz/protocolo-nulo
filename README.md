@@ -10,6 +10,11 @@
 
 Uma cidade entrega sua administração a VÉRTICE, um sistema de coordenação civil. Você é um auditor encarregado de examinar decisões públicas. Ao longo de oito capítulos, o futuro das instituições será definido pela qualidade das evidências, pela autonomia, pela confiança e pela estabilidade.
 
+
+## Novo: laboratório autônomo VÉRTICE
+
+Experimente uma simulação multiagente independente da campanha: [abrir HTML](autonomo.html) (baixe e abra no navegador) · [código e documentação](autonomo/README.md). Os agentes tomam decisões em ciclos sem escolhas manuais; o modelo funciona localmente e não controla sistemas externos.
+
 ## Jogar
 
 - Abra `jogar.html` diretamente no navegador (versão autônoma).
