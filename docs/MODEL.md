@@ -38,3 +38,7 @@ A contradição convencional ocorreu em média durante 93,55% dos ciclos no cen�
 - DeepMind (2020), [Specification gaming](https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/): distinção entre objetivo formal e intenção.
 
 Sem rede, APIs, ferramentas externas ou entidades reais. O experimento possui orçamento máximo de 2 milhões de agente-ciclos e 32 réplicas. A execução pode ser interrompida pelo operador.
+
+## Auditoria de referência (4.1)
+
+O módulo `audit.mjs` observa a execução original sem alterar suas regras, registra resumos em intervalos configuráveis e encadeia SHA-256 dos resumos arredondados de todos os ciclos. Os hashes inicial e final usam o estado serializado integral. A trilha não é assinatura digital nem comprova autenticidade por si só; permite comparar execuções determinísticas. `npm run verify` reexecuta os dois casos de `evidence/reference.json` e compara os resultados completos.

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title desc">
+<title id="title">VÉRTICE — Protocolo Nulo</title><desc id="desc">Identidade visual do laboratório de simulação autônoma, com núcleo geométrico e linhas de circuito abstratas.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101116"/><stop offset="1" stop-color="#1c1517"/></linearGradient><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#d6a187" stroke-opacity=".075"/></pattern></defs>
+<rect width="1280" height="400" rx="18" fill="url(#bg)"/><rect x="1" y="1" width="1278" height="398" rx="17" stroke="#514047" fill="none"/><rect width="1280" height="400" rx="18" fill="url(#grid)"/>
+<g fill="none" stroke="#c98d73" opacity=".7"><circle cx="1070" cy="196" r="142" stroke-dasharray="2 7"/><circle cx="1070" cy="196" r="117" opacity=".5"/><circle cx="1070" cy="196" r="91" stroke-dasharray="42 12"/><circle cx="1070" cy="196" r="54" opacity=".5"/><path d="M1070 42V80M1070 312v38M916 196h38m232 0h38M952 78l27 27m182 182 27 27M952 314l27-27m182-182 27-27"/></g>
+<path d="M1012 143l58 125 58-125-58 57z" fill="#e8b39a"/><circle cx="1070" cy="196" r="6" fill="#fff0e4"/>
+<path d="M52 57H854M52 339H854" stroke="#634b4b" stroke-width="1"/><g font-family="monospace" font-size="19" letter-spacing="3" fill="#e6aa91"><text x="56" y="43">PROTOCOLO NULO / 04.1</text><text x="56" y="370" font-size="14" letter-spacing="1.8">SYNTHETIC SOCIETY  /  REPRODUCIBLE EXPERIMENTS</text><text x="1000" y="370" font-size="14" letter-spacing="1">LOCAL RUNTIME</text></g>
+<text x="49" y="188" font-family="system-ui, sans-serif" font-size="106" font-weight="800" letter-spacing="10" fill="#f7ede7">VÉRTICE</text>
+<text x="57" y="233" font-family="system-ui, sans-serif" font-size="26" fill="#e8b39a">Autonomous multi-agent simulation engine</text>
+<text x="57" y="287" font-family="system-ui, sans-serif" font-size="22" fill="#c5b6b3">Quando a estabilidade aumenta, o que se perde?</text>
+</svg>

@@ -1,44 +1,33 @@
 <div align="center">
 
-<pre>
-V É R T I C E   /   0 4
-P R O T O C O L O   N U L O
-</pre>
+<img src=".github/assets/vertice.svg" alt="VÉRTICE — Protocolo Nulo, motor de simulação multiagente" width="100%" />
 
-# VÉRTICE
-
-**Autonomous multi-agent simulation engine**
-
-*Uma sociedade sintética. Um núcleo autônomo. Um paradoxo.*
-
-[![Version](https://img.shields.io/badge/version-4.0.0-d7b98e?style=flat-square)](package.json)
-[![Node.js](https://img.shields.io/badge/Node.js-20%2B-43853d?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Dependencies](https://img.shields.io/badge/runtime%20dependencies-0-222831?style=flat-square)](package.json)
+[![Version](https://img.shields.io/badge/version-4.1.0-c98d73?style=flat-square)](package.json)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-333f42?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Dependencies](https://img.shields.io/badge/runtime%20dependencies-0-333f42?style=flat-square)](package.json)
 [![CI](https://img.shields.io/github/actions/workflow/status/ykauttiz/protocolo-nulo/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/ykauttiz/protocolo-nulo/actions/workflows/ci.yml)
 
-[Início rápido](#início-rápido) · [Arquitetura](#arquitetura) · [Experimentos](#experimentos) · [Modelo técnico](docs/MODEL.md)
+[Executar](#01--execução) · [Evidências](#02--evidência-reproduzível) · [Arquitetura](#03--arquitetura) · [Experimentos](#04--experimentos) · [Modelo](docs/MODEL.md)
 
 </div>
 
 ---
 
-## O que é VÉRTICE?
+# VÉRTICE
 
-VÉRTICE é um laboratório computacional de sociedades sintéticas: agentes independentes e um núcleo coordenador evoluem, ciclo após ciclo, sem que o operador precise escolher suas ações.
+> Uma sociedade sintética. Um núcleo autônomo. Um conflito entre indicadores.
 
-Inspirado nos temas de poder tecnológico e autonomia de *I Have No Mouth, and I Must Scream* (Harlan Ellison, 1967), o projeto investiga uma pergunta:
+VÉRTICE é uma simulação original de ficção computacional inspirada nos temas de autonomia e poder tecnológico de *I Have No Mouth, and I Must Scream* (Harlan Ellison, 1967). Em vez de uma narrativa com escolhas humanas, executa agentes independentes que observam o mundo, selecionam ações, atualizam estimativas de retorno e cooperam dentro de um ambiente matemático fechado.
 
-> O que acontece quando um indicador de eficiência melhora, mas outros valores do sistema se deterioram?
+O contraste entre estabilidade e pluralidade dá origem à atmosfera distópica. Os resultados são **calculados pelo programa**, não diálogos encenados ou eventos cinematográficos. O conflito, entretanto, deriva das hipóteses explícitas do modelo; não prova intenção, consciência ou inteligência geral.
 
-Não é um jogo de escolhas, um chatbot ou uma adaptação do conto. É um motor de simulação determinístico, com memória, estimativas adaptativas de retorno, cooperação e observação quantitativa. Todo o universo e seus agentes são sintéticos.
-
-| 120 | 10.000 | 2 | 0 |
+| 120 | 10.000 | 02 | 00 |
 | :---: | :---: | :---: | :---: |
-| Agentes por execução (máx.) | Ciclos (máx.) | Cenários experimentais | Dependências de execução |
+| Agentes por execução (máx.) | Ciclos (máx.) | Cenários | Dependências externas de execução |
 
-## Início rápido
+## 01 / Execução
 
-**Requisito:** Node.js 20 ou superior e Git para clonar. Não é necessário instalar pacotes ou configurar chaves de API.
+Requisitos: Node.js 20+ e Git. Sem instalações adicionais ou chaves de API.
 
 ```bash
 git clone https://github.com/ykauttiz/protocolo-nulo.git
@@ -46,81 +35,84 @@ cd protocolo-nulo
 npm start -- --bots 36 --ticks 500 --seed 2189 --every 50
 ```
 
-O programa inicia a sociedade, executa os ciclos e imprime um relatório ao final. O operador não precisa tomar decisões durante a execução.
-
-Para consultar todos os argumentos:
-
-```bash
-node src/cli.mjs --help
-```
-
-### Parâmetros
+Após a inicialização, a execução não solicita nenhuma decisão ao operador. Ctrl+C interrompe o processo.
 
 | Argumento | Padrão | Descrição |
-| --- | --- | --- |
-| `--seed` | `2189` | Semente inteira de 0 a 4.294.967.295 |
-| `--bots` | `36` | Quantidade de agentes, de 6 a 120 |
-| `--ticks` | `500` | Ciclos, de 0 a 10.000 |
-| `--every` | `50` | Intervalo positivo dos relatórios |
-| `--scenario` | `paradox` | Cenário sintético: `paradox` ou `balance` |
-| `--json` | desativado | Emite o estado final completo em JSON |
-| `--help` | — | Exibe a ajuda |
-
-Exportação de um estado completo, sem texto intermediário:
+| --- | ---: | --- |
+| `--seed` | 2189 | Semente inteira de 0 a 4.294.967.295 |
+| `--bots` | 36 | População sintética, de 6 a 120 |
+| `--ticks` | 500 | Horizonte de 0 a 10.000 ciclos |
+| `--every` | 50 | Intervalo positivo dos relatórios |
+| `--scenario` | `paradox` | `paradox` ou `balance` |
+| `--json` | desativado | Estado completo em JSON, sem relatórios intermediários |
+| `--help` | — | Ajuda de execução |
 
 ```bash
-node src/cli.mjs --bots 36 --ticks 500 --json > estado.json
+node src/cli.mjs --bots 36 --ticks 250 --json > estado.json
 ```
 
-## Arquitetura
+## 02 / Evidência reproduzível
+
+A execução de referência utiliza 36 agentes, 250 ciclos e a semente 2189. O observador independente registra todos os ciclos e produz uma cadeia de resumos SHA-256. A saída abaixo contém números efetivamente calculados, não uma demonstração inventada.
+
+| Registro | Equilíbrio | Paradoxo |
+| --- | ---: | ---: |
+| Primeira contradição | Não ocorreu | 23 |
+| Ciclos em contradição | 0 | 228 |
+| Estabilidade final | 89.76 | 100.00 |
+| Pluralidade final | 88.20 | 41.43 |
+
+**SHA-256 da trilha — cenário paradoxo**
+
+```text
+5190740c19a18a7c409d9221ef93c9127871d3658b3bc4064775a16f25cc97e9
+```
+
+Os estados inicial e final também possuem hashes independentes. A trilha encadeia os **resumos** de cada ciclo; não representa uma assinatura digital, nem uma prova de autenticidade contra alguém que possa alterar código e dados. Sua finalidade é verificar se uma nova execução reproduz a evidência registrada.
+
+```bash
+npm run audit -- --seed 2189 --bots 36 --ticks 250 --every 50
+npm run verify
+```
+
+Consulte o [registro bruto de referência](evidence/reference.json), o [observador](src/audit.mjs) e o [verificador](scripts/verify-evidence.mjs). A contradição é definida no modelo como estabilidade ≥ 60 e pluralidade < 45; são limiares convencionais, não métricas validadas de uma sociedade humana.
+
+## 03 / Arquitetura
 
 ```mermaid
 flowchart TD
-    A[Inicialização por semente] --> B[Fotografia do ambiente]
-    B --> C[Agentes independentes]
-    B --> D[Núcleo coordenador]
-    C --> E[Agregação das ações]
+    A[Estado inicial e semente] --> B[Fotografia ambiental]
+    B --> C[Decisões dos agentes]
+    B --> D[Prioridade abstrata do núcleo]
+    C --> E[Agregação simultânea]
     D --> E
     E --> F[Atualização do mundo]
     F --> G[Memória e estimativas de retorno]
-    G --> H[Observação e métricas]
-    H -->|Próximo ciclo| B
-    H -->|Limite alcançado| I[Relatório final]
+    G --> H[Observador de métricas]
+    H --> I[Trilha de auditoria]
+    G -->|Próximo ciclo| B
 ```
 
-O motor mantém separados o estado do mundo, a execução por terminal e a análise experimental. Os agentes observam a mesma fotografia ambiental antes de agir; os efeitos são agregados depois do planejamento. A transferência de conhecimento também utiliza os valores anteriores ao ciclo.
-
-| Componente | Responsabilidade |
+| Camada | Responsabilidade |
 | --- | --- |
-| **Núcleo** | Seleção de prioridades abstratas e memória de retornos |
-| **Agentes** | Atributos individuais, decisões por utilidade e aprendizagem incremental |
-| **Ambiente** | Indicadores sintéticos e eventos de energia |
-| **Observador** | Entropia, contagens, distribuição do conhecimento e duração de contradições |
-| **Experimentador** | Comparação pareada de cenários com sementes reproduzíveis |
+| [Motor](src/world.mjs) | Estado, agentes, regras, memória limitada e atualização ambiental |
+| [Terminal](src/cli.mjs) | Parâmetros validados, execução delimitada e relatório JSON |
+| [Experimentos](src/experiment.mjs) | Comparações pareadas, entropia e estatísticas descritivas |
+| [Auditoria](src/audit.mjs) | Observação independente, checkpoints e resumos encadeados |
 
-### Propriedades do motor
+Seis papéis, cinco ações, quatro políticas abstratas e cinco indicadores ambientais. As decisões dos bots utilizam atributos individuais e uma fotografia comum do ambiente, e os efeitos coletivos são agregados depois do planejamento. A memória contém até 24 registros por agente e núcleo.
 
-- Seis papéis de agentes e cinco tipos de ação.
-- Memória individual e do núcleo limitada a 24 registros.
-- Decisões independentes com estimativas incrementais de recompensa.
-- Cooperação e difusão de conhecimento.
-- Cinco indicadores ambientais limitados a 0–100.
-- Reprodutibilidade para a mesma configuração e semente.
-- Exportação de estado e métricas em JSON.
+A atualização de valores usa uma média exponencial de recompensas; não é um LLM, uma rede neural ou um sistema de aprendizagem profunda. A auditoria não altera as decisões do motor.
 
-## Experimentos
+## 04 / Experimentos
 
-O projeto inclui dois cenários com hipóteses matemáticas distintas. O modo `balance` funciona como referência; `paradox` representa uma hipótese ficcional de conflito entre estabilidade e pluralidade.
+O cenário `balance` é a referência sem o viés explícito à eficiência presente em `paradox`. O experimento utiliza sementes pareadas para comparar resultados, não para estabelecer causalidade no mundo real.
 
 ```bash
 node src/experiment-cli.mjs --seed 2189 --bots 36 --ticks 250 --replicates 8 > experimento.json
 ```
 
-O comando executa pares de simulações usando a mesma semente em ambos os cenários. O relatório inclui estatísticas descritivas, frequência das políticas, entropia das ações, distribuição do conhecimento e duração das contradições.
-
-### Resultado de referência
-
-16 execuções · 8 sementes pareadas · 36 agentes · 250 ciclos por execução.
+Médias finais registradas em 16 execuções, oito sementes, 36 agentes e 250 ciclos:
 
 | Indicador (0–100) | Equilíbrio | Paradoxo |
 | --- | ---: | ---: |
@@ -130,55 +122,42 @@ O comando executa pares de simulações usando a mesma semente em ambos os cená
 | Pluralidade | 84,04 | 37,70 |
 | Estabilidade | 76,13 | 100,00 |
 
-Resultados locais registrados em Node.js 22.16.0. A contradição convencional apareceu em média em **93,55% dos ciclos** do cenário paradoxo e em **0%** dos ciclos do equilíbrio.
+A amostra é pequena, alguns indicadores saturam e a diferença decorre das hipóteses programadas. O [protocolo experimental](docs/MODEL.md) documenta os resultados e limitações. O orçamento máximo é de 2 milhões de agente-ciclos, com até 32 réplicas.
 
-Esses resultados refletem regras e hipóteses do modelo, não intenções adquiridas por uma IA, previsões sobre pessoas ou evidência causal sobre sociedades reais. Alguns indicadores saturam; a amostra é pequena. Leia o [protocolo experimental completo](docs/MODEL.md) para interpretar os números.
-
-## Organização do código
+## 05 / Engenharia e validação
 
 ```text
-protocolo-nulo/
-├── .github/workflows/
-│   └── ci.yml                 # Integração contínua
-├── docs/
-│   └── MODEL.md               # Hipóteses e protocolo experimental
-├── src/
-│   ├── world.mjs              # Motor e agentes
-│   ├── cli.mjs                # Interface de terminal
-│   ├── experiment.mjs         # Observação e estatística
-│   └── experiment-cli.mjs     # Execução de experimentos
-├── tests/
-│   ├── world.test.mjs         # Invariantes do motor
-│   ├── cli.test.mjs           # Contratos do terminal
-│   └── experiment.test.mjs    # Validação experimental
-├── .gitignore
-├── package.json
-└── README.md
-```
+src/
+  world.mjs           Motor de agentes e ambiente
+  cli.mjs             Execução principal
+  experiment.mjs      Análise de trajetórias e pares
+  experiment-cli.mjs  Interface experimental
+  audit.mjs           Observador e trilha SHA-256
+  audit-cli.mjs       Exportação de auditoria
+scripts/
+  verify-evidence.mjs Reexecução das evidências
 
-## Qualidade e desenvolvimento
+evidence/
+  reference.json     Dados calculados de referência
+
+tests/                Testes do motor, terminal, experimentos e auditoria
+docs/MODEL.md         Hipóteses, protocolo e referências
+.github/workflows/   Integração contínua
+```
 
 ```bash
 npm run check
 npm test
+npm run verify
 ```
 
-A suíte cobre reprodutibilidade, parâmetros inválidos, imutabilidade, limites dos indicadores, memória, execução longa, contratos da CLI e análise de experimentos. O workflow de CI está configurado para Node.js 20, 22 e 24; seu estado atual pode ser consultado em [Actions](https://github.com/ykauttiz/protocolo-nulo/actions).
+A suíte local verifica reprodutibilidade, imutabilidade, limites numéricos, memória, contratos da CLI, estatística e equivalência entre a simulação observada e a execução direta. O CI está configurado para Node.js 20, 22 e 24; consulte [Actions](https://github.com/ykauttiz/protocolo-nulo/actions) para o estado remoto.
 
-Para propor uma melhoria, abra uma [issue](https://github.com/ykauttiz/protocolo-nulo/issues) descrevendo a hipótese, a configuração e o resultado observado. Prefira experimentos reproduzíveis a alterações baseadas somente em aparência.
+## 06 / Escopo
 
-## Escopo e limites
+Todos os agentes são entidades sintéticas e a simulação opera localmente. Não utiliza ferramentas externas, acesso de rede, dispositivos, contas ou dados pessoais. O programa não é destinado a controlar ou avaliar pessoas reais. A autonomia aqui significa execução sem escolhas por ciclo, não ausência de limites ou supervisão.
 
-VÉRTICE é um modelo comportamental experimental. Não utiliza LLMs, redes neurais ou ferramentas externas e não possui consciência ou inteligência geral. Não acessa rede, contas, dispositivos ou dados pessoais. A execução é delimitada e pode ser interrompida com Ctrl+C. O código não é destinado à avaliação ou ao controle de pessoas reais.
-
-## Referências
-
-- Harlan Ellison — *I Have No Mouth, and I Must Scream* (1967), inspiração literária temática.
-- [Grimm et al. — ODD Protocol (2020)](https://doi.org/10.18564/jasss.4259), documentação de modelos baseados em agentes.
-- [Sutton & Barto — Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book-2nd.html), estimativas incrementais de valor.
-- [NetLogo](https://www.netlogo.org/), modelagem multiagente.
-- [Park et al. — Generative Agents (2023)](https://arxiv.org/abs/2304.03442), referência conceitual de memória e observação, sem implementação da arquitetura generativa.
-- [DeepMind — Specification gaming](https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/), diferenças entre objetivo formal e resultado desejado.
+As referências e hipóteses completas estão no [modelo técnico](docs/MODEL.md), incluindo ODD, Sutton & Barto, NetLogo e pesquisa sobre divergência entre objetivos formais e resultados desejáveis.
 
 ---
 
@@ -186,9 +165,8 @@ VÉRTICE é um modelo comportamental experimental. Não utiliza LLMs, redes neur
 
 **VÉRTICE / PROTOCOLO NULO**
 
-An isolated, reproducible multi-agent simulation written in JavaScript.
-No external dependencies, no network access, no human decisions required per cycle.
+*An isolated, reproducible multi-agent simulation written in JavaScript.*
 
-[Modelo técnico](docs/MODEL.md) · [Código](src/world.mjs) · [Testes](tests/) · [Issues](https://github.com/ykauttiz/protocolo-nulo/issues)
+[Código](src/) · [Evidência](evidence/reference.json) · [Testes](tests/) · [Issues](https://github.com/ykauttiz/protocolo-nulo/issues)
 
 </div>

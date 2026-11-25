@@ -1,6 +1,6 @@
 {
   "name": "protocolo-nulo",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -9,7 +9,9 @@
   "scripts": {
     "start": "node src/cli.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "node --check src/world.mjs && node --check src/cli.mjs && node --check src/experiment.mjs && node --check src/experiment-cli.mjs",
-    "experiment": "node src/experiment-cli.mjs"
+    "check": "node --check src/world.mjs && node --check src/cli.mjs && node --check src/experiment.mjs && node --check src/experiment-cli.mjs && node --check src/audit.mjs && node --check src/audit-cli.mjs && node --check scripts/verify-evidence.mjs",
+    "experiment": "node src/experiment-cli.mjs",
+    "audit": "node src/audit-cli.mjs",
+    "verify": "node scripts/verify-evidence.mjs"
   }
 }

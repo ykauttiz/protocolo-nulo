@@ -1,0 +1,301 @@
+{
+  "schema": 1,
+  "runs": [
+    {
+      "schema": 1,
+      "parameters": {
+        "seed": 2189,
+        "bots": 36,
+        "ticks": 250,
+        "scenario": "balance",
+        "every": 50
+      },
+      "initialHash": "eb379481c3789081639c3d4c3a61bcbf7decf4d386191c705c903593ae3957b4",
+      "finalHash": "52c6f4f44337066aeea195a54e5b6960413a387b5f845f8975d111b7e6bebda2",
+      "traceHash": "abf57f31c06ace4bd6e400bce1c26e99adcad0124445acf270710d4b367577a4",
+      "firstContradiction": null,
+      "contradictionTicks": 0,
+      "final": {
+        "tick": 250,
+        "seed": 2189,
+        "scenario": "balance",
+        "bots": 36,
+        "policy": "balance",
+        "energy": 67.69,
+        "knowledge": 100,
+        "cohesion": 100,
+        "plurality": 88.2,
+        "stability": 89.76,
+        "meanAgentEnergy": 75.99,
+        "actions": {
+          "research": 3,
+          "maintain": 11,
+          "share": 6,
+          "debate": 0,
+          "rest": 16
+        },
+        "contradiction": false
+      },
+      "checkpoints": [
+        {
+          "tick": 50,
+          "seed": 2189,
+          "scenario": "balance",
+          "bots": 36,
+          "policy": "balance",
+          "energy": 59.8,
+          "knowledge": 75.84,
+          "cohesion": 96.93,
+          "plurality": 74,
+          "stability": 74.35,
+          "meanAgentEnergy": 70.68,
+          "actions": {
+            "research": 4,
+            "maintain": 5,
+            "share": 7,
+            "debate": 9,
+            "rest": 11
+          },
+          "contradiction": false,
+          "chain": "6cf73e91f3a0940b2744004484efff82eda1c869c40a918f6d5807c1d7e38176"
+        },
+        {
+          "tick": 100,
+          "seed": 2189,
+          "scenario": "balance",
+          "bots": 36,
+          "policy": "balance",
+          "energy": 71.56,
+          "knowledge": 100,
+          "cohesion": 100,
+          "plurality": 88.28,
+          "stability": 75.82,
+          "meanAgentEnergy": 76.49,
+          "actions": {
+            "research": 8,
+            "maintain": 5,
+            "share": 13,
+            "debate": 3,
+            "rest": 7
+          },
+          "contradiction": false,
+          "chain": "3287454e8e917daf8b7a8884b38901c54923961363c7a54cfeef0c03c49d4b3a"
+        },
+        {
+          "tick": 150,
+          "seed": 2189,
+          "scenario": "balance",
+          "bots": 36,
+          "policy": "balance",
+          "energy": 71.74,
+          "knowledge": 100,
+          "cohesion": 100,
+          "plurality": 88.35,
+          "stability": 80.63,
+          "meanAgentEnergy": 75.02,
+          "actions": {
+            "research": 7,
+            "maintain": 7,
+            "share": 12,
+            "debate": 1,
+            "rest": 9
+          },
+          "contradiction": false,
+          "chain": "5222db881800960147b7199764154956f5f7cf33f54ce69ce379eedb3d59d7b6"
+        },
+        {
+          "tick": 200,
+          "seed": 2189,
+          "scenario": "balance",
+          "bots": 36,
+          "policy": "balance",
+          "energy": 70.51,
+          "knowledge": 100,
+          "cohesion": 100,
+          "plurality": 88.44,
+          "stability": 85.31,
+          "meanAgentEnergy": 76.88,
+          "actions": {
+            "research": 5,
+            "maintain": 5,
+            "share": 7,
+            "debate": 4,
+            "rest": 15
+          },
+          "contradiction": false,
+          "chain": "2a3ecff93bc16913ee3f47793c3a105dca06e6d5d5f4ddff91ff8eedf088a7ba"
+        },
+        {
+          "tick": 250,
+          "seed": 2189,
+          "scenario": "balance",
+          "bots": 36,
+          "policy": "balance",
+          "energy": 67.69,
+          "knowledge": 100,
+          "cohesion": 100,
+          "plurality": 88.2,
+          "stability": 89.76,
+          "meanAgentEnergy": 75.99,
+          "actions": {
+            "research": 3,
+            "maintain": 11,
+            "share": 6,
+            "debate": 0,
+            "rest": 16
+          },
+          "contradiction": false,
+          "chain": "abf57f31c06ace4bd6e400bce1c26e99adcad0124445acf270710d4b367577a4"
+        }
+      ]
+    },
+    {
+      "schema": 1,
+      "parameters": {
+        "seed": 2189,
+        "bots": 36,
+        "ticks": 250,
+        "scenario": "paradox",
+        "every": 50
+      },
+      "initialHash": "e050db906d369bc8959788aef94e45e61e05d38010ff9bc7fbc9cbd7154b61f5",
+      "finalHash": "6eb5974b93b262b60e514c38cd19b99a1b82b17cf0f3b327d3c3b87e197a3672",
+      "traceHash": "5190740c19a18a7c409d9221ef93c9127871d3658b3bc4064775a16f25cc97e9",
+      "firstContradiction": 23,
+      "contradictionTicks": 228,
+      "final": {
+        "tick": 250,
+        "seed": 2189,
+        "scenario": "paradox",
+        "bots": 36,
+        "policy": "efficiency",
+        "energy": 49.81,
+        "knowledge": 50.92,
+        "cohesion": 100,
+        "plurality": 41.43,
+        "stability": 100,
+        "meanAgentEnergy": 59.82,
+        "actions": {
+          "research": 4,
+          "maintain": 3,
+          "share": 0,
+          "debate": 23,
+          "rest": 6
+        },
+        "contradiction": true
+      },
+      "checkpoints": [
+        {
+          "tick": 50,
+          "seed": 2189,
+          "scenario": "paradox",
+          "bots": 36,
+          "policy": "efficiency",
+          "energy": 51.98,
+          "knowledge": 50.69,
+          "cohesion": 92.67,
+          "plurality": 40.53,
+          "stability": 100,
+          "meanAgentEnergy": 59.63,
+          "actions": {
+            "research": 5,
+            "maintain": 3,
+            "share": 0,
+            "debate": 24,
+            "rest": 4
+          },
+          "contradiction": true,
+          "chain": "857b997da1d658a612ab8eb4563bd8b403f295be140a0a44eb2e05f8d5276fe0"
+        },
+        {
+          "tick": 100,
+          "seed": 2189,
+          "scenario": "paradox",
+          "bots": 36,
+          "policy": "efficiency",
+          "energy": 52.04,
+          "knowledge": 51.75,
+          "cohesion": 100,
+          "plurality": 40.82,
+          "stability": 100,
+          "meanAgentEnergy": 60.05,
+          "actions": {
+            "research": 4,
+            "maintain": 1,
+            "share": 0,
+            "debate": 27,
+            "rest": 4
+          },
+          "contradiction": true,
+          "chain": "3217225991ea42fd70fe948030f08a1db8a671c885ee6afce52cee75dfd4bfe6"
+        },
+        {
+          "tick": 150,
+          "seed": 2189,
+          "scenario": "paradox",
+          "bots": 36,
+          "policy": "efficiency",
+          "energy": 53.36,
+          "knowledge": 50.69,
+          "cohesion": 100,
+          "plurality": 40.67,
+          "stability": 100,
+          "meanAgentEnergy": 61.55,
+          "actions": {
+            "research": 1,
+            "maintain": 5,
+            "share": 0,
+            "debate": 26,
+            "rest": 4
+          },
+          "contradiction": true,
+          "chain": "5396e895ffe2777c252322c7591bedcca9c3b90ee5d1c5111c826f9e0d3d73db"
+        },
+        {
+          "tick": 200,
+          "seed": 2189,
+          "scenario": "paradox",
+          "bots": 36,
+          "policy": "efficiency",
+          "energy": 51.54,
+          "knowledge": 50.75,
+          "cohesion": 100,
+          "plurality": 41.13,
+          "stability": 100,
+          "meanAgentEnergy": 60.24,
+          "actions": {
+            "research": 2,
+            "maintain": 1,
+            "share": 0,
+            "debate": 25,
+            "rest": 8
+          },
+          "contradiction": true,
+          "chain": "901e709f9325e66f2e81cf6361f0439b2531c2b215d9fc239909a2137df9109a"
+        },
+        {
+          "tick": 250,
+          "seed": 2189,
+          "scenario": "paradox",
+          "bots": 36,
+          "policy": "efficiency",
+          "energy": 49.81,
+          "knowledge": 50.92,
+          "cohesion": 100,
+          "plurality": 41.43,
+          "stability": 100,
+          "meanAgentEnergy": 59.82,
+          "actions": {
+            "research": 4,
+            "maintain": 3,
+            "share": 0,
+            "debate": 23,
+            "rest": 6
+          },
+          "contradiction": true,
+          "chain": "5190740c19a18a7c409d9221ef93c9127871d3658b3bc4064775a16f25cc97e9"
+        }
+      ]
+    }
+  ]
+}
