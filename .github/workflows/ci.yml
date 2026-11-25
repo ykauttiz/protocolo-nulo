@@ -1,15 +1,18 @@
-name: Validate game
+name: Validate autonomous engine
 on: [push, pull_request]
 permissions:
   contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['20', '22', '24']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ matrix.node }}
+      - run: npm run check
       - run: npm test
-      - run: npm run build
-      - run: git diff --exit-code -- jogar.html
+      - run: node src/cli.mjs --bots 12 --ticks 100 --json > /tmp/vertice.json

@@ -1,14 +1,1 @@
-{
-  "name": "protocolo-nulo",
-  "version": "2.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "test": "node --test tests/*.test.js",
-    "start": "python -m http.server 8000",
-    "build": "node scripts/build.mjs"
-  },
-  "engines": {
-    "node": ">=20"
-  }
-}
+{"name":"protocolo-nulo","version":"3.0.0","private":true,"type":"module","engines":{"node":">=20"},"scripts":{"start":"node src/cli.mjs","test":"node --test tests/*.test.mjs","check":"node --check src/world.mjs && node --check src/cli.mjs"}}
