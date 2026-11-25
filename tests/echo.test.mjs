@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {initialField,advanceField,summarize,renderField,runEcho} from '../src/echo.mjs';
+import {report,runWorld} from '../src/world.mjs';
+test('field is fixed, bounded, and immutable',()=>{const f=initialField(),copy=[...f],next=advanceField(f,.5);assert.deepEqual(f,copy);assert.equal(next.length,120);assert.ok(next.every(x=>x>=0&&x<=1));assert.ok(summarize(next).nonzero>1);});
+test('unforced field dissipates rather than generating energy',()=>{let f=initialField();const start=summarize(f).mean;for(let i=0;i<100;i++)f=advanceField(f,0);assert.ok(summarize(f).mean<start);});
+test('input constraints',()=>{for(const f of [[],[NaN],Array(120).fill(2)])assert.throws(()=>advanceField(f,0));assert.throws(()=>advanceField(initialField(),Infinity));assert.throws(()=>runEcho({ticks:10001}));assert.throws(()=>runEcho({onFrame:1}));});
+test('deterministic frames and independent world metrics',()=>{const p={seed:2189,bots:12,ticks:100};const a=runEcho(p);assert.deepEqual(a,runEcho(p));const r=report(runWorld(p));assert.equal(a.frames.at(-1).stability,r.stability);assert.equal(a.frames.at(-1).plurality,r.plurality);assert.equal(a.frames.length,100);assert.equal(renderField(a.field).split('\n').length,10);});
+test('observer receives copies',()=>{const p={ticks:20,bots:6};assert.deepEqual(runEcho({...p,onFrame:(r,f)=>{r.mean=-1;f.fill(99);}}),runEcho(p));});
+test('zero cycles and CLI JSON',()=>{assert.equal(runEcho({ticks:0}).frames.length,0);const cli=fileURLToPath(new URL('../src/echo-cli.mjs',import.meta.url));const run=(...args)=>spawnSync(process.execPath,[cli,...args],{encoding:'utf8',timeout:10000});const p=run('--bots','6','--ticks','10','--json');assert.equal(p.status,0,p.stderr);assert.equal(JSON.parse(p.stdout).frames.length,10);assert.equal(run('--every','0').status,1);});
