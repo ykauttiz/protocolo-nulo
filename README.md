@@ -37,3 +37,15 @@ O projeto é uma simulação computacional fictícia, não AGI, LLM ou modelo ci
 - [Generative Agents (2023)](https://arxiv.org/abs/2304.03442): observação e memória de agentes; este projeto não implementa a arquitetura generativa do artigo.
 
 A versão 3 substitui a campanha antiga pelo motor autônomo em código. O histórico Git preserva as versões anteriores.
+
+## Versão 4 — análise experimental
+
+Além da execução autônoma, o modelo inclui difusão cooperativa de conhecimento entre agentes, observação de toda a trajetória e experimentos pareados reproduzíveis.
+
+```sh
+npm run experiment -- --seed 2189 --bots 36 --ticks 250 --replicates 8
+npm run check
+npm test
+```
+
+O comando de experimento emite JSON com entropia de ações, distribuição de conhecimento, frequência de políticas, duração da contradição e estatísticas descritivas das diferenças entre cenários. Consulte [modelo, hipóteses, resultados e referências](docs/MODEL.md). O cenário distópico continua sendo uma hipótese programada; não se trata de intenção autônoma emergente.

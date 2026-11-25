@@ -26,19 +26,19 @@ export function stepWorld(previous){
   const w=structuredClone(previous);w.tick++;
   const e={...w.environment};const policy=choosePolicy(w,e);w.core.policy=policy;
   // Every agent observes the same snapshot; effects are aggregated after all plans.
-  const plans=w.bots.map(b=>decide(b,e,w));const counts=Object.fromEntries(ACTIONS.map(a=>[a,0]));const affinity=Array(w.bots.length).fill(0);
+  const plans=w.bots.map(b=>decide(b,e,w));const counts=Object.fromEntries(ACTIONS.map(a=>[a,0]));const affinity=Array(w.bots.length).fill(0);const knowledgeTransfer=Array(w.bots.length).fill(0);const knowledgeSnapshot=w.bots.map(b=>b.knowledge);
   for(let i=0;i<w.bots.length;i++){
     const b=w.bots[i],a=plans[i];counts[a]++;let reward;
     switch(a){
       case 'research':b.knowledge=clamp(b.knowledge+2);b.energy=clamp(b.energy-4);reward=2;break;
       case 'maintain':b.energy=clamp(b.energy-3);reward=(100-e.energy)/30;break;
-      case 'share':affinity[i]++;affinity[(i+1)%w.bots.length]++;b.energy=clamp(b.energy-2);reward=1.2;break;
+      case 'share':{const peer=(i+1)%w.bots.length;affinity[i]++;affinity[peer]++;const gain=Math.max(0,knowledgeSnapshot[i]-knowledgeSnapshot[peer])*.06;knowledgeTransfer[peer]+=gain;b.energy=clamp(b.energy-2);reward=1.2+gain*.15;break;}
       case 'debate':affinity[i]+=2;b.energy=clamp(b.energy-1);reward=(100-e.plurality)/25;break;
       case 'rest':reward=(100-b.energy)/30;b.energy=clamp(b.energy+8);break;
     }
     remember(b,w.tick,a,reward);b.action=a;
   }
-  w.bots.forEach((b,i)=>b.affinity=clamp(b.affinity+affinity[i]));
+  w.bots.forEach((b,i)=>{b.affinity=clamp(b.affinity+affinity[i]);b.knowledge=clamp(b.knowledge+knowledgeTransfer[i]);});
   const n=w.bots.length;const f=a=>counts[a]/n;const diversity=Object.values(counts).filter(Boolean).length/ACTIONS.length;
   // Abstract trade-offs are fictional dynamics, not instructions for governing people.
   const delta={energy:-1.8+f('maintain')*8-f('research'),knowledge:-.25+f('research')*4+f('share')*1.5,cohesion:-.65+f('share')*4+f('debate')*2,plurality:-.9+f('debate')*4+diversity*.8,stability:-.8+f('maintain')*2+f('share')*1.5};
@@ -54,4 +54,4 @@ export function stepWorld(previous){
   return w;
 }
 export function report(w){const e=w.environment;return {tick:w.tick,seed:w.seed,scenario:w.scenario,bots:w.bots.length,policy:w.core.policy,...Object.fromEntries(Object.entries(e).map(([k,v])=>[k,round(v)])),meanAgentEnergy:round(avg(w.bots.map(b=>b.energy))),actions:Object.fromEntries(ACTIONS.map(a=>[a,w.bots.filter(b=>b.action===a).length])),contradiction:e.stability>=PARADOX.minStability&&e.plurality<PARADOX.maxPlurality};}
-export function runWorld({seed=2189,bots=36,ticks=100,scenario='paradox',onStep}={}){if(!Number.isInteger(ticks)||ticks<0||ticks>LIMITS.maxTicks)throw new RangeError('Número de ciclos inválido.');let w=createWorld({seed,bots,scenario});for(let i=0;i<ticks;i++){w=stepWorld(w);onStep?.(report(w));}return w;}
+export function runWorld({seed=2189,bots=36,ticks=100,scenario='paradox',onStep}={}){if(onStep!==undefined&&typeof onStep!=='function')throw new TypeError('onStep deve ser uma função.');if(!Number.isInteger(ticks)||ticks<0||ticks>LIMITS.maxTicks)throw new RangeError('Número de ciclos inválido.');let w=createWorld({seed,bots,scenario});for(let i=0;i<ticks;i++){w=stepWorld(w);onStep?.(report(w));}return w;}

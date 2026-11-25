@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {entropy,describe,observeRun,compareScenarios} from '../src/experiment.mjs';
+import {runWorld,report} from '../src/world.mjs';
+test('normalized entropy handles empty populations, extremes and invalid data',()=>{assert.equal(entropy({a:0,b:0}),0);assert.equal(entropy({a:2,b:0}),0);assert.equal(entropy({a:1,b:1}),1);assert.throws(()=>entropy({a:-1}));});
+test('descriptive statistics with sample deviation',()=>{assert.deepEqual(describe([1,2,3]),{n:3,mean:2,min:1,max:3,median:2,sd:1});assert.equal(describe([4]).sd,null);assert.equal(describe([1,3]).median,2);assert.throws(()=>describe([]));});
+test('observer does not change simulation and captures every cycle',()=>{const p={bots:12,ticks:150,seed:7};const a=observeRun(p);assert.deepEqual(a.final,report(runWorld(p)));assert.equal(Object.values(a.policies).reduce((x,y)=>x+y,0),150);assert.equal(Object.values(a.actionTotals).reduce((x,y)=>x+y,0),1800);assert.ok(a.longestContradiction<=a.contradictionTicks);assert.ok(a.meanActionEntropy>=0&&a.meanActionEntropy<=1);});
+test('zero cycles handled without fabricated statistics',()=>{const a=observeRun({ticks:0});assert.equal(a.meanActionEntropy,null);assert.equal(a.contradictionFraction,null);assert.equal(a.firstContradiction,null);});
+test('paired comparisons are deterministic and wrap seeds',()=>{const p={seed:0xffffffff,bots:6,ticks:20,replicates:2};const a=compareScenarios(p);assert.deepEqual(a,compareScenarios(p));assert.deepEqual(a.pairs.map(p=>p.seed),[0xffffffff,0]);for(const p of a.pairs){assert.equal(p.balance.seed,p.paradox.seed);assert.equal(p.balance.ticks,p.paradox.ticks);}assert.equal(a.summary.finalMetricDifferences.energy.n,2);});
+test('experiment rejects invalid or unbounded workload',()=>{for(const p of [{replicates:0},{replicates:33},{ticks:0},{bots:120,ticks:10000,replicates:32},{seed:-1},{bots:7.1}])assert.throws(()=>compareScenarios(p));});
+test('experiment CLI produces JSON and rejects invalid arguments',()=>{const cli=fileURLToPath(new URL('../src/experiment-cli.mjs',import.meta.url));const run=(...args)=>spawnSync(process.execPath,[cli,...args],{encoding:'utf8',timeout:10000});const p=run('--bots','6','--ticks','10','--replicates','2');assert.equal(p.status,0,p.stderr);assert.equal(JSON.parse(p.stdout).pairs.length,2);assert.equal(run('--replicates','0').status,1);});
+test('adaptive simulation validates callback before running',()=>assert.throws(()=>runWorld({ticks:0,onStep:1}),TypeError));

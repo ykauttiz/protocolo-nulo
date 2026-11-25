@@ -16,3 +16,4 @@ jobs:
       - run: npm run check
       - run: npm test
       - run: node src/cli.mjs --bots 12 --ticks 100 --json > /tmp/vertice.json
+      - run: node src/experiment-cli.mjs --bots 6 --ticks 20 --replicates 2 > /tmp/vertice-experiment.json
