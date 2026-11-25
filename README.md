@@ -2,7 +2,7 @@
 
 <img src=".github/assets/vertice.svg" alt="VÉRTICE — Protocolo Nulo, motor de simulação multiagente" width="100%" />
 
-[![Version](https://img.shields.io/badge/version-4.1.0-c98d73?style=flat-square)](package.json)
+[![Version](https://img.shields.io/badge/version-4.2.0-c98d73?style=flat-square)](package.json)
 [![Node.js](https://img.shields.io/badge/Node.js-20%2B-333f42?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Dependencies](https://img.shields.io/badge/runtime%20dependencies-0-333f42?style=flat-square)](package.json)
 [![CI](https://img.shields.io/github/actions/workflow/status/ykauttiz/protocolo-nulo/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/ykauttiz/protocolo-nulo/actions/workflows/ci.yml)
@@ -24,6 +24,17 @@ O contraste entre estabilidade e pluralidade dá origem à atmosfera distópica.
 | 120 | 10.000 | 02 | 00 |
 | :---: | :---: | :---: | :---: |
 | Agentes por execução (máx.) | Ciclos (máx.) | Cenários | Dependências externas de execução |
+
+## ECHO / Anomalia do campo sintético
+
+A versão 4.2 acrescenta um observador espacial de horror computacional: uma perturbação numérica se difunde por uma matriz fixa de 12 × 10 células. Sua intensidade é vinculada à diferença calculada entre estabilidade e pluralidade, sem alterar as decisões dos agentes. A visualização é produzida a partir dos valores do campo, não de mensagens roteirizadas.
+
+```bash
+npm run echo -- --bots 36 --ticks 250 --every 25
+node src/echo-cli.mjs --bots 36 --ticks 250 --json > echo.json
+```
+
+O campo é apenas uma matriz matemática em memória: não contém código executável, não replica programas, não acessa rede, arquivos ou dispositivos e não representa um vírus real. Consulte [ECHO](docs/ECHO.md) para as hipóteses e os testes.
 
 ## 01 / Execução
 
